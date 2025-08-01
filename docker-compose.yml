@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  spring-boot-app:
+    image: "${DC_SPRING_BOOT_IMAGE_NAME}:${DC_SPRING_BOOT_VERSION_TAG}"
+    ports:
+      - "${SPRING_BOOT_PORT}:${SPRING_DOCKER_PORT}"
+    restart: always
+    container_name: spring-boot-container
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:${POSTGRES_PORT}/${POSTGRES_DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+    depends_on:
+      - db
+    networks:
+      - private-network
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    container_name: postgres-container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - private-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: pgadmin-container
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: abdessamad.abidar@outlook.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    depends_on:
+      - db
+    networks:
+      - private-network
+
+  angular-app:
+    image: "${DC_ANGULAR_IMAGE_NAME}:${DC_ANGULAR_VERSION_TAG}"
+    restart: always
+    container_name: angular-container
+    ports:
+      - "${ANGULAR_PORT}:80"
+    depends_on:
+      - spring-boot-app
+    networks:
+      - private-network
+
+
+volumes:
+  postgres-data:
+
+networks:
+  private-network:

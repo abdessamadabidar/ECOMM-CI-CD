@@ -1,0 +1,142 @@
+<div class="mt-5 ps-2">
+  <ol class="flex items-center whitespace-nowrap">
+    <li class="inline-flex items-center">
+      <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 " routerLink="/admin/dashboard">
+        <svg class="shrink-0 me-3 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        Admin
+      </a>
+      <svg class="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6"></path>
+      </svg>
+    </li>
+    <li class="inline-flex items-center text-sm font-semibold text-gray-800 truncate" aria-current="page" routerLink="/admin/orders">
+      Orders
+    </li>
+  </ol>
+</div>
+<!-- Table Section -->
+<div class="max-w-[85rem]  py-10 sm:px-6 lg:py-14 mx-auto">
+  <!-- Card -->
+  <div class="flex flex-col">
+    <div class="-m-1.5 overflow-x-auto">
+      <div class="p-1.5 min-w-full inline-block align-middle">
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <!-- Table -->
+          <table class="min-w-full table-auto divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-start">
+                <a class="group inline-flex items-center gap-x-2 text-xs font-semibold uppercase text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500 ">
+                  Reference
+                </a>
+              </th>
+
+              <th class="px-6 py-3 text-start">
+                <a class="group inline-flex whitespace-nowrap items-center gap-x-2 text-xs font-semibold uppercase text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500">
+                  Customer name
+                </a>
+              </th>
+              <th class="px-6 py-3 text-start">
+                <a class="group inline-flex items-center whitespace-nowrap gap-x-2 text-xs font-semibold uppercase text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500">
+                  Total products
+                </a>
+              </th>
+
+              <th  class="px-6 py-3 text-start">
+                <a class="group inline-flex items-center whitespace-nowrap gap-x-2 text-xs font-semibold uppercase text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500">
+                  Total amount
+                </a>
+              </th>
+
+              <th class="px-6 py-3 text-start">
+                <a class="group inline-flex items-center gap-x-2 text-xs font-semibold uppercase text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500 ">
+                  Ordered at
+                </a>
+              </th>
+              <th></th>
+            </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200 ">
+                <tr class="bg-white hover:bg-gray-50" *ngFor="let order of this.ordersPage.content">
+                  <td class="size-px whitespace-nowrap">
+                    <a class="block relative z-10">
+                      <div class="px-6 py-2">
+                        <div class="block text-sm text-blue-600 decoration-2 hover:underline dark:text-blue-500">{{order.reference}}</div>
+                      </div>
+                    </a>
+                  </td>
+                  <td class="h-px">
+                    <a class="block relative z-10">
+                      <div class="px-6 py-2">
+                        <p class="text-sm text-gray-500">{{order.customer.firstName}} {{order.customer.lastName}}</p>
+                      </div>
+                    </a>
+                  </td>
+                  <td class="h-px">
+                    <a class="block relative z-10">
+                      <div class="px-6 py-2">
+                        <p class="text-sm text-gray-500">{{order.orderLines!.length}}</p>
+                      </div>
+                    </a>
+                  </td>
+                  <td class="h-px">
+                    <a class="block relative z-10">
+                      <div class="px-6 py-2">
+                        <p class="text-sm text-gray-500">{{order.totalAmount | number: '1.1-2'}} MAD</p>
+                      </div>
+                    </a>
+                  </td>
+                  <td class="h-px w-72 min-w-72">
+                    <a class="block relative z-10">
+                      <div class="px-6 py-2">
+                        <p class="text-sm text-gray-500">{{order.orderedAt | date: 'medium'}}</p>
+                      </div>
+                    </a>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium space-x-4">
+                    <button (click)="viewSingleOrder(order.id)" type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none">View</button>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+          <!-- End Table -->
+
+            <!-- Footer -->
+            <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
+                <div>
+                    <p class="text-sm text-gray-600">
+                        <span class="font-semibold text-gray-800">{{ordersPage.pageInfo.currentPage}} / {{ordersPage.pageInfo.totalPages}}</span> Page
+                    </p>
+                </div>
+                <p class="text-sm text-gray-600">
+                    <span class="font-medium text-gray-800 ms-5">{{ordersPage.pageInfo.size}}</span> of <span class="font-medium text-gray-800">{{ordersPage.pageInfo.totalElements}}</span> Orders
+                </p>
+                <div>
+                    <div class="inline-flex gap-x-2">
+                        <button (click)="toPreviousPage()" type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50"
+                                [disabled]="!this.ordersPage.pageInfo.hasPrevious"
+                        >
+                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                            Prev
+                        </button>
+
+                        <button (click)="toNextPage()" type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50"
+                                [disabled]="!this.ordersPage.pageInfo.hasNext">
+                            Next
+                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Card -->
+</div>
+<!-- End Table Section -->

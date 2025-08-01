@@ -1,0 +1,61 @@
+<div class="mt-5 ps-2">
+    <ol class="flex items-center whitespace-nowrap">
+        <li class="inline-flex items-center">
+            <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" routerLink="/admin/products">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 1024 1024" class="me-2"><path fill="currentColor" fill-rule="evenodd" d="M464 144c8.837 0 16 7.163 16 16v304c0 8.836-7.163 16-16 16H160c-8.837 0-16-7.164-16-16V160c0-8.837 7.163-16 16-16zm-52 68H212v200h200zm493.333 87.686c6.248 6.248 6.248 16.379 0 22.627l-181.02 181.02c-6.248 6.248-16.378 6.248-22.627 0l-181.019-181.02c-6.248-6.248-6.248-16.379 0-22.627l181.02-181.02c6.248-6.248 16.378-6.248 22.627 0zm-84.853 11.313L713 203.52L605.52 311L713 418.48zM464 544c8.837 0 16 7.164 16 16v304c0 8.837-7.163 16-16 16H160c-8.837 0-16-7.163-16-16V560c0-8.836 7.163-16 16-16zm-52 68H212v200h200zm452-68c8.837 0 16 7.164 16 16v304c0 8.837-7.163 16-16 16H560c-8.837 0-16-7.163-16-16V560c0-8.836 7.163-16 16-16zm-52 68H612v200h200z"/></svg>
+                poducts
+            </a>
+            <svg class="shrink-0 mx-2 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+        </li>
+        <li class="inline-flex items-center text-sm font-semibold text-gray-800 truncate" aria-current="page">
+            {{product.name}}
+        </li>
+    </ol>
+</div>
+<div class="p-5">
+    <!-- Profile -->
+    <div class="shrink-0">
+        <img class="shrink-0 rounded-md" src="{{product.imageUrl}}" alt="Avatar">
+    </div>
+    <!-- End Profile -->
+
+    <!-- About -->
+    <div class="mt-8">
+        <h1 class="text-3xl font-semibold mb-4">{{product.name}}</h1>
+        <p class="text-sm text-gray-600 dark:text-neutral-400">
+            {{product.description}}
+        </p>
+
+
+        <ul class="mt-5 flex flex-col gap-y-3">
+            <li class="flex items-center gap-x-2.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.1 18.1 0 0 0 5.224-5.223c.54-.827.368-1.908-.33-2.607l-9.583-9.58A2.25 2.25 0 0 0 9.568 3"/><path d="M6 6h.008v.008H6z"/></g></svg>
+                <p class="text-sm text-gray-500 2 focus:outline-none focus:decoration-2">
+                <span class="font-semibold">Reference</span> : {{product.reference}}
+                </p>
+            </li>
+            <li class="flex items-center gap-x-2.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0s1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659c-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0"/></svg>                <p class="text-sm text-gray-500 2 focus:outline-none focus:decoration-2">
+                <span class="font-semibold">Price</span> : {{product.price}} MAD
+                </p>
+            </li>
+            <li class="flex items-center gap-x-2.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="m20.25 7.5l-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125"/></svg>                <p class="text-sm text-gray-500 2 focus:outline-none focus:decoration-2">
+                <span class="font-semibold">Stock</span> : {{product.availableQuantity}}
+                </p>
+            </li>
+            <li class="flex items-center gap-x-2.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 1024 1024"><path fill="currentColor" fill-rule="evenodd" d="M464 144c8.837 0 16 7.163 16 16v304c0 8.836-7.163 16-16 16H160c-8.837 0-16-7.164-16-16V160c0-8.837 7.163-16 16-16zm-52 68H212v200h200zm493.333 87.686c6.248 6.248 6.248 16.379 0 22.627l-181.02 181.02c-6.248 6.248-16.378 6.248-22.627 0l-181.019-181.02c-6.248-6.248-6.248-16.379 0-22.627l181.02-181.02c6.248-6.248 16.378-6.248 22.627 0zm-84.853 11.313L713 203.52L605.52 311L713 418.48zM464 544c8.837 0 16 7.164 16 16v304c0 8.837-7.163 16-16 16H160c-8.837 0-16-7.163-16-16V560c0-8.836 7.163-16 16-16zm-52 68H212v200h200zm452-68c8.837 0 16 7.164 16 16v304c0 8.837-7.163 16-16 16H560c-8.837 0-16-7.163-16-16V560c0-8.836 7.163-16 16-16zm-52 68H612v200h200z"/></svg>
+                <p class="text-sm text-gray-500 2 focus:outline-none focus:decoration-2">
+                    <span class="font-semibold">Category</span> : {{product.category.name}}
+                </p>
+            </li>
+
+
+        </ul>
+    </div>
+    <!-- End About -->
+
+</div>

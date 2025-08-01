@@ -1,0 +1,129 @@
+
+##################################### Operation Types ########################################
+type Query {
+    paginatedCustomers(page: Int, size: Int) : CustomersPage
+    customerById(id: ID): Customer
+
+    paginatedProducts(page: Int, size: Int): ProductsPage
+    productById(id: ID): Product
+
+    paginatedOrders(page: Int, size: Int): OrdersPage
+    orderById(id: ID): Order
+
+}
+
+type Mutation {
+    deleteCustomer(id: ID) : String
+}
+
+type Subscription {
+    generalStatistics: GeneralStatistics
+    bestSellingProducts(limit: Int!): [BestSellingProductsMap]
+    incomeVariationOfTheYear: [MonthIncome]
+}
+
+
+##################################### Object Types ########################################
+
+type CustomersPage {
+    content: [Customer!]!
+    pageInfo: PageInfo!
+}
+
+type ProductsPage {
+    content: [Product!]!
+    pageInfo: PageInfo!
+}
+
+type OrdersPage {
+    content: [Order!]!
+    pageInfo: PageInfo!
+}
+
+
+type Customer {
+    id: ID!,
+    firstName: String,
+    lastName: String,
+    email: String
+    phone: String
+    address: Address
+}
+
+type Address {
+    zipCode: Int
+    street: String,
+    houseNumber: Int,
+    city: String
+}
+
+type Product {
+    id: ID!
+    name: String,
+    description: String
+    imageUrl: String
+    price: Float,
+    availableQuantity: Int,
+    reference: String,
+    category: Category
+}
+
+
+type Category {
+    id: ID!
+    name: String,
+    description: String
+}
+
+type Order {
+    id: ID!
+    orderedAt: String
+    reference: String
+    totalAmount: Float
+    customer: Customer
+    orderLines: [OrderLine]
+}
+
+type OrderLine {
+    id: ID!
+    quantity: Int
+    product: Product
+}
+
+
+type PageInfo {
+    totalPages: Int!
+    totalElements: Int!
+    currentPage: Int!
+    size: Int!
+    hasPrevious: Boolean!
+    hasNext: Boolean!
+}
+
+
+type GeneralStatistics {
+    numberOfCustomers: Int
+    numberOfProducts: Int
+    numberOfOrders: Int
+    totalIncome: Float
+}
+
+type BestSellingProductsMap {
+    key: Product
+    value: Float
+}
+
+type MonthIncome {
+    key: String
+    value: Float
+}
+
+
+
+
+
+
+
+
+
+

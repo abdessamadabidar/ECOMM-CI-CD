@@ -1,0 +1,121 @@
+<div>
+    <!-- Card Section -->
+    <div class="max-w-[85rem] space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <!-- Grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <!-- Card -->
+            <div class="flex flex-col bg-white border shadow-sm rounded-xl">
+                <div class="p-4 md:p-5 flex gap-x-4">
+                    <div class="shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg">
+                        <svg class="shrink-0 size-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+
+                    <div class="grow">
+                        <div class="flex items-center gap-x-2">
+                            <p class="text-xs uppercase tracking-wide text-gray-500">
+                                Total customers
+                            </p>
+                            <div class="hs-tooltip">
+                                <div class="hs-tooltip-toggle">
+                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700" role="tooltip">
+                  The number of daily users
+                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-1 flex items-center gap-x-2">
+                            <h3 class="text-xl sm:text-2xl font-medium text-gray-800">
+                                {{statistics.numberOfCustomers}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col bg-white border shadow-sm rounded-xl">
+                <div class="p-4 md:p-5 flex gap-x-4">
+                    <div class="shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg">
+                        <svg class="shrink-0 size-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 1024 1024"><path fill="currentColor" fill-rule="evenodd" d="M464 144c8.837 0 16 7.163 16 16v304c0 8.836-7.163 16-16 16H160c-8.837 0-16-7.164-16-16V160c0-8.837 7.163-16 16-16zm-52 68H212v200h200zm493.333 87.686c6.248 6.248 6.248 16.379 0 22.627l-181.02 181.02c-6.248 6.248-16.378 6.248-22.627 0l-181.019-181.02c-6.248-6.248-6.248-16.379 0-22.627l181.02-181.02c6.248-6.248 16.378-6.248 22.627 0zm-84.853 11.313L713 203.52L605.52 311L713 418.48zM464 544c8.837 0 16 7.164 16 16v304c0 8.837-7.163 16-16 16H160c-8.837 0-16-7.163-16-16V560c0-8.836 7.163-16 16-16zm-52 68H212v200h200zm452-68c8.837 0 16 7.164 16 16v304c0 8.837-7.163 16-16 16H560c-8.837 0-16-7.163-16-16V560c0-8.836 7.163-16 16-16zm-52 68H612v200h200z"/></svg>
+                    </div>
+
+                    <div class="grow">
+                        <div class="flex items-center gap-x-2">
+                            <p class="text-xs uppercase tracking-wide text-gray-500">
+                                Total Products
+                            </p>
+                        </div>
+                        <div class="mt-1 flex items-center gap-x-2">
+                            <h3 class="text-xl font-medium text-gray-800">
+                                {{statistics.numberOfProducts}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col bg-white border shadow-sm rounded-xl">
+                <div class="p-4 md:p-5 flex gap-x-4">
+                    <div class="shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg">
+                        <svg class="shrink-0 size-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="3"><path d="M44 14L24 4L4 14v20l20 10l20-10z"/><path stroke-linecap="round" d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"/></g></svg>
+                    </div>
+
+                    <div class="grow">
+                        <div class="flex items-center gap-x-2">
+                            <p class="text-xs uppercase tracking-wide text-gray-500">
+                                Total Orders
+                            </p>
+                        </div>
+                        <div class="mt-1 flex items-center gap-x-2">
+                            <h3 class="text-xl sm:text-2xl font-medium text-gray-800">
+                                {{statistics.numberOfOrders}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col bg-white border shadow-sm rounded-xl">
+                <div class="p-4 md:p-5 flex gap-x-4">
+                    <div class="shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg">
+                        <svg class="shrink-0 size-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0s1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659c-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0"/></svg>
+
+                    </div>
+
+                    <div class="grow">
+                        <div class="flex items-center gap-x-2">
+                            <p class="text-xs uppercase tracking-wide text-gray-500">
+                                Total income
+                            </p>
+
+                        </div>
+                        <div class="mt-1 flex items-center gap-x-2">
+                            <h3 class="text-xl font-medium text-gray-800">
+                                {{statistics.totalIncome |  number:'1.2-3' }}
+                                <span class="text-xs text-gray-500">MAD</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+        </div>
+        <!-- End Grid -->
+        <div class="grid lg:grid-cols-2 gap-10">
+            <div class="">
+                <h2 class="text-2xl font-semibold mb-4">Best selling products</h2>
+                <app-best-selling-products></app-best-selling-products>
+            </div>
+            <div class="">
+                <h2 class="text-2xl font-semibold mb-4">Income variation</h2>
+                <app-income-variation></app-income-variation>
+            </div>
+        </div>
+    </div>
+    <!-- End Card Section -->
+</div>
