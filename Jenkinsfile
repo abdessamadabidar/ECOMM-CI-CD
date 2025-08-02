@@ -69,7 +69,17 @@ pipeline {
                     def packageJson = readJSON file: 'client/package.json'
                     def version = packageJson.version
 
-                    echo "${version}"
+                    def versionNums = version.tokenize('.')
+                    def maj = versionNums[0]
+                    def min = versionNums[1]
+                    def pat = versionNums[2] as Integer
+                    pat = pat + 1
+
+                    def newVersion = "${maj}.${min}.${pat}".toString()
+                    packageJson.version = newVersion
+                    env.FRONT_IMAGE_VERSION = newVersion
+
+                    echo "${FRONT_IMAGE_VERSION}"
                 }
             }
         }
