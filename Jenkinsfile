@@ -24,24 +24,34 @@ pipeline {
                 // pom.xml ~ xml
 
                script {
-                   echo 'Before increment'
-                   def version = readMavenPom().getVersion() // 0.0.1-SNAPSHOT
-                   echo "${version}"
 
+                   // Read current version from pom.xml
+                   def pom = readMavenPom file: 'pom.xml'
+                   def version = pom.version
 
-                   def parts = version.tokenize('-')  // ['0.0.1', 'SNAPSHOT']
-                   def versionNums = parts[0].tokenize('.') // ['0', '0', '1']
+                   // Split version: "0.0.1-SNAPSHOT"
+                   def parts = version.tokenize('-')   // ['0.0.1', 'SNAPSHOT']
+                   def versionNums = parts[0].tokenize('.')  // ['0', '0', '1']
 
+                   // Extract and increment patch
                    def major = versionNums[0]
                    def minor = versionNums[1]
                    def patch = versionNums[2] as Integer
                    patch = patch + 1
+
+                   // Handle suffix if exists
                    def suffix = (parts.size() > 1) ? parts[1] : null
 
-                   BACK_IMAGE_VERSION = major + '.' + minor + '.' + patch + '-' + suffix
+                   // Construct new version string
+                   def newVersion = suffix ? "${major}.${minor}.${patch}-${suffix}" : "${major}.${minor}.${patch}"
 
-                   echo 'After increment'
-                   echo "${BACK_IMAGE_VERSION}"
+                   // Update version in pom object
+                   pom.version = newVersion
+                   BACK_IMAGE_VERSION = newVersion
+
+                   // Write back the updated pom.xml
+                   writeMavenPom model: pom, file: 'pom.xml'
+
                }
 
             }
