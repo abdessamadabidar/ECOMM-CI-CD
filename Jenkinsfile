@@ -50,6 +50,9 @@ pipeline {
                    pom.version = newVersion
                    env.BACK_IMAGE_VERSION = newVersion
 
+                   echo "Old version: ${version}"
+                   echo "New version: ${newVersion}"
+
                    // Write back the updated pom.xml
                    writeMavenPom model: pom, file: 'pom.xml'
 
