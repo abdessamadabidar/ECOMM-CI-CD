@@ -79,7 +79,7 @@ pipeline {
                     packageJson.version = newVersion
                     env.FRONT_IMAGE_VERSION = newVersion
 
-                    echo "${FRONT_IMAGE_VERSION}"
+                    echo "${newVersion}"
                 }
             }
         }
