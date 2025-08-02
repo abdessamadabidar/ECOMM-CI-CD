@@ -1,5 +1,7 @@
+#!user/bin/env groovy
+
 pipeline {
-    agent: any
+    agent any
     stages {
         stage('Test stage') {
             steps {
