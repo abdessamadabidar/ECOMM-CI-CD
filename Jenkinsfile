@@ -4,6 +4,11 @@ pipeline {
     agent any
     environment {
         registry = 'abdessamadabidar/ecomm-ci-cd'
+        BACK_IMAGE_VERSION = ''
+        FRONT_IMAGE_VERSION = ''
+
+        IMAGE = readMavenPom().getArtifactId()
+        VERSION = readMavenPom().getVersion()
     }
 
     stages {
@@ -14,6 +19,25 @@ pipeline {
             }
         }
 
+        stage('Backend auto versioning') {
+            steps {
+                // Increment backend release version
+                // pom.xml ~ xml
+                sh echo ${IMAGE}
+                sh echo ${VERSION}
+
+
+            }
+        }
+
+
+//        stage('Frontend auto versioning') {
+//            steps {
+//                // Increment front release version
+//                // package.json ~ json
+//            }
+//        }
+//
 //        stage('Back-end') {
 //            steps {
 //                // Build Docker Image
@@ -21,12 +45,12 @@ pipeline {
 //            }
 //        }
 //
-
-        stage('Front-end') {
-            steps {
-                sh "docker build -t ${registry}/ecommfront:latest client/"
-            }
-        }
+//
+//        stage('Front-end') {
+//            steps {
+//                sh "docker build -t ${registry}/ecommfront:latest client/"
+//            }
+//        }
 
 
     }
