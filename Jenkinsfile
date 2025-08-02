@@ -43,11 +43,12 @@ pipeline {
                    def suffix = (parts.size() > 1) ? parts[1] : null
 
                    // Construct new version string
-                   def newVersion = suffix ? "${major}.${minor}.${patch}-${suffix}" : "${major}.${minor}.${patch}"
+                   def newVersion = suffix ? "${major}.${minor}.${patch}-${suffix}".toString() : "${major}.${minor}.${patch}".toString()
+
 
                    // Update version in pom object
                    pom.version = newVersion
-                   BACK_IMAGE_VERSION = newVersion
+                   env.BACK_IMAGE_VERSION = newVersion
 
                    // Write back the updated pom.xml
                    writeMavenPom model: pom, file: 'pom.xml'
