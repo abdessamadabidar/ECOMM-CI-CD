@@ -65,10 +65,12 @@ pipeline {
                 // Increment front release version
                 // package.json ~ json
 
-                def packageJson = readJSON file: 'client/package.json'
-                def version = packageJson.version
+                script {
+                    def packageJson = readJSON file: 'client/package.json'
+                    def version = packageJson.version
 
-                echo "${version}"
+                    echo "${version}"
+                }
             }
         }
 
