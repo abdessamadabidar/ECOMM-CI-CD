@@ -23,8 +23,8 @@ pipeline {
             steps {
                 // Increment backend release version
                 // pom.xml ~ xml
-                echo ${IMAGE}
-                echo ${VERSION}
+                echo "${IMAGE}"
+                echo "${VERSION}"
 
 
             }
