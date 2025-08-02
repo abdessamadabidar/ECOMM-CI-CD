@@ -19,7 +19,7 @@ pipeline {
         stage('Back-end') {
             steps {
                 // Build Docker Image
-               sh backImage = docker.build registry + '/ecommback:0.0.1'
+               sh 'docker build -t ecommback:latest .'
             }
         }
 
