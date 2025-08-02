@@ -34,7 +34,8 @@ pipeline {
 
                    def major = versionNums[0]
                    def minor = versionNums[1]
-                   def patch = 1 + versionNums[2] as Integer
+                   def patch = versionNums[2] as Integer
+                   patch = patch + 1
                    def suffix = (parts.size() > 1) ? parts[1] : null
 
                    BACK_IMAGE_VERSION = major + '.' + minor + '.' + patch + '-' + suffix
