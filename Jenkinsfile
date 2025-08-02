@@ -2,11 +2,20 @@
 
 pipeline {
     agent any
+    environment {
+        registry = 'abdessamadabidar/ecomm-ci-cd'
+        backImage = 'ecommback'
+        frontImage = 'ecommfront'
+    }
+
     stages {
-        stage('Test stage') {
+        stage('Back-end') {
             steps {
-                echo 'Hello world!'
+                // Build Docker Image
+                docker.build registry + backImage + '0.0.1'
             }
         }
+
+
     }
 }
