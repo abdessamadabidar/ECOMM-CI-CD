@@ -7,7 +7,8 @@ COPY pom.xml .
 
 ENV APP_NAME "Shopino"
 
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests \
+    && mv target/*.jar app.jar
 
 
 FROM openjdk:17-jdk-slim
@@ -16,7 +17,7 @@ LABEL maintainer="abdessamad.abidar@hotmail.com"
 
 WORKDIR /app
 
-COPY --from=builder /app/target/shopino-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /app/app.jar app.jar
 
 RUN apt-get update && apt-get install -y curl
 

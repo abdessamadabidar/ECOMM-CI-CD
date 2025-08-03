@@ -48,11 +48,9 @@ pipeline {
 //
 //                   // Update version in pom object
 //                   pom.version = newVersion
-//                   env.BACK_IMAGE_VERSION = newVersion
-//
 //
 //                   // Write back the updated pom.xml
-//                   writeMavenPom model: pom, file: 'pom.xml'
+//                   writeMavenPom model: pom
 //
 //               }
 //
@@ -77,11 +75,12 @@ pipeline {
 
                     def newVersion = "${maj}.${min}.${pat}".toString()
                     packageJson.version = newVersion
-                    env.FRONT_IMAGE_VERSION = newVersion
 
-                    echo "${newVersion}"
+                    writeJSON file: 'client/package.json', json: packageJson, pretty: 4
+
                 }
             }
+
         }
 
 
