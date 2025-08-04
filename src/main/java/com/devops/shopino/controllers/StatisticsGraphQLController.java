@@ -9,6 +9,8 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SubscriptionMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
@@ -17,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/graphql")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class StatisticsGraphQLController {
 

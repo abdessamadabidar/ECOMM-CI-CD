@@ -21,7 +21,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/graphql")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class CustomerGraphQLController {
 
