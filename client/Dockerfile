@@ -19,9 +19,12 @@ WORKDIR /usr/share/nginx/html
 # Copy built files from the builder stage
 COPY --from=builder /usr/local/app/dist/shopino /usr/share/nginx/html
 
-# Copy the server block configuration
-COPY ./nginx.conf /etc/nginx/templates/nginx.conf.template
+# Remove default nginx configuration
+RUN rm /etc/nginx/conf.d/default.conf
 
-EXPOSE 80 443 6006 4200
+# Copy the server block configuration as template
+COPY ./nginx.conf /etc/nginx/templates/default.conf.template
+
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
