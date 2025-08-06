@@ -9,10 +9,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/graphql")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class OrderGraphqlController {
     private final IOrderService orderService;
