@@ -7,17 +7,24 @@ import {getMainDefinition, offsetLimitPagination} from "@apollo/client/utilities
 import {GraphQLWsLink} from "@apollo/client/link/subscriptions";
 import { createClient } from 'graphql-ws';
 import {Kind, OperationTypeNode} from "graphql/language";
-const uri = 'http://localhost:8080/graphql'; // <-- add the URL of the GraphQL server here
+
+const backend_host = process.env["BACKEND_HOST"] || 'localhost'
+const backend_port = process.env["BACKEND_PORT"] || '8080'
+
+const uri = `http://${backend_host}:${backend_port}/graphql`; // <-- add the URL of the GraphQL server here
+
+
 export function apolloOptionsFactory(): ApolloClientOptions<any> {
+
   const httpLink = inject(HttpLink);
 
     const http = httpLink.create({
-        uri: 'http://localhost:8080/graphql',
+        uri: `http://${backend_host}:${backend_port}/graphql`,
     });
 
     const ws = new GraphQLWsLink(
         createClient({
-            url: 'ws://localhost:8080/graphql',
+            url: `ws://${backend_host}:${backend_port}/graphql`,
         }),
     );
 

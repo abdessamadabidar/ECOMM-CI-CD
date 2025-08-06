@@ -1,12 +1,4 @@
 spring:
-  graphql:
-    graphiql:
-      enabled: true
-    cors:
-      allowed-origins: ${CLIENT_HOST}
-      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
-    websocket:
-      path: /graphql
   jpa:
     generate-ddl: true
     hibernate:
@@ -29,11 +21,7 @@ spring:
 server:
   port: ${PROD_SERVER_PORT}
 
-app:
-  data:
-    number-of-customers: ${NUMBER_OF_CUSTOMERS}
-    number-of-products: ${NUMBER_OF_PRODUCTS}
-    number-of-orders: ${NUMBER_OF_ORDERS}
+
 
 management:
   endpoint:

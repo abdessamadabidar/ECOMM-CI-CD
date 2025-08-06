@@ -17,9 +17,11 @@ import {Router, RouterLink} from "@angular/router";
   styleUrl: './customers.component.css'
 })
 export class CustomersComponent implements OnInit {
-    public customersPage!: CustomersPage;
+    public customersPage: CustomersPage | null = null; // Initialize as null
     public page: number = 0;
     public size: number = 10;
+    public isLoading: boolean = false; // Add loading state
+
 
 
     constructor(
@@ -33,23 +35,51 @@ export class CustomersComponent implements OnInit {
     }
 
     private getPaginatedCustomers() {
+        this.isLoading = true;
+
         this.customersService
-            .fetchPaginatedCustomers(
-                this.page,
-                this.size
-            ).subscribe({
-            next: ({data, loading}) => {
-                this.customersPage = data['paginatedCustomers']
-                console.log(this.customersPage)
-            },
-            error: err => {
-                console.log(err)
-            }
-        })
+            .fetchPaginatedCustomers(this.page, this.size)
+            .subscribe({
+                next: (result) => {
+                    console.log('Full result:', result); // Debug the entire result
+
+                    if (result.loading) {
+                        console.log('Still loading...');
+                        return;
+                    }
+
+                    if (result.data) {
+                        console.log('Raw data:', result.data);
+                        console.log('Paginated customers:', result.data.paginatedCustomers);
+
+                        this.customersPage = result.data.paginatedCustomers;
+                        this.isLoading = false;
+                    } else {
+                        console.log('No data in result');
+                    }
+
+                    if (result.errors) {
+                        console.error('GraphQL errors:', result.errors);
+                    }
+                },
+                error: err => {
+                    this.isLoading = false;
+                    console.error('Subscription error:', err);
+
+                    // Check for specific error types
+                    if (err.networkError) {
+                        console.error('Network error:', err.networkError);
+                    }
+                    if (err.graphQLErrors) {
+                        console.error('GraphQL errors:', err.graphQLErrors);
+                    }
+                }
+            });
     }
 
+
     public toNextPage() {
-        if (this.customersPage.pageInfo.hasNext) {
+        if (!(this.customersPage) || this.customersPage.pageInfo.hasNext) {
             this.page += 1;
 
             // Fetch the next customers
@@ -58,7 +88,7 @@ export class CustomersComponent implements OnInit {
     }
 
     public toPreviousPage() {
-        if (this.customersPage.pageInfo.hasPrevious) {
+        if (!(this.customersPage) || this.customersPage.pageInfo.hasPrevious) {
             this.page -= 1;
 
             // Fetch the previous customers

@@ -1,4 +1,13 @@
 spring:
+  graphql:
+    graphiql:
+      enabled: true
+    cors:
+      allowed-origins: ${CLIENT_HOST}
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+      allowed-headers: "*"
+    websocket:
+      path: /graphql
   profiles:
     active: ${SPRING_PROFILES_ACTIVE}
 

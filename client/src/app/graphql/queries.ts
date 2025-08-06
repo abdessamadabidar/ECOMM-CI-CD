@@ -20,7 +20,7 @@ export const CUSTOMERS_PAGE = gql`
                 }
             }
             pageInfo {
-                totalElements
+                totalPages
                 totalElements
                 size
                 currentPage
@@ -30,6 +30,7 @@ export const CUSTOMERS_PAGE = gql`
         }
     }
 `
+
 
 export const PRODUCTS_PAGE = gql`
     query fetchProducts($page: Int!, $size: Int!) {
