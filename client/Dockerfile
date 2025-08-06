@@ -17,7 +17,7 @@ FROM nginx:1.23.1-alpine
 
 WORKDIR /usr/share/nginx/html
 # Copy built files from the builder stage
-COPY --from=builder /usr/local/app/dist/shopino/browser /usr/share/nginx/html
+COPY --from=builder /usr/local/app/dist/shopino /usr/share/nginx/html
 
 # Copy the server block configuration
 COPY ./nginx.conf /etc/nginx/templates/nginx.conf.template
