@@ -18,12 +18,12 @@ export function apolloOptionsFactory(): ApolloClientOptions<any> {
   const httpLink = inject(HttpLink);
 
     const http = httpLink.create({
-        uri: `http://${backend_host}:${backend_port}/graphql`,
+        uri: `http://ecommbacksvc:8080/graphql`,
     });
 
     const ws = new GraphQLWsLink(
         createClient({
-            url: `ws://${backend_host}:${backend_port}/graphql`,
+            url: `ws://ecommbacksvc:8080/graphql`,
         }),
     );
 
