@@ -11,7 +11,6 @@ import {Kind, OperationTypeNode} from "graphql/language";
 const backend_host = process.env["BACKEND_HOST"] || 'localhost'
 const backend_port = process.env["BACKEND_PORT"] || '8080'
 
-const uri = `http://${backend_host}:${backend_port}/graphql`; // <-- add the URL of the GraphQL server here
 
 
 export function apolloOptionsFactory(): ApolloClientOptions<any> {
