@@ -4,7 +4,8 @@ import {CustomersService} from "../../services/customers.service";
 import {JsonPipe, NgForOf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 
-
+const backend_host = process.env["BACKEND_HOST"] || 'localhost'
+const backend_port = process.env["BACKEND_PORT"] || '8080'
 @Component({
   selector: 'app-customers',
   standalone: true,
@@ -32,6 +33,9 @@ export class CustomersComponent implements OnInit {
 
     ngOnInit(): void {
         this.getPaginatedCustomers()
+        console.log("====================== DEBUG ===================")
+        console.log('Backend Host:', process.env["BACKEND_HOST"]);
+        console.log('Backend Port:', process.env["BACKEND_PORT"]);
     }
 
     private getPaginatedCustomers() {
