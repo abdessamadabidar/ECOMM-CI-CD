@@ -3,27 +3,24 @@ import { HttpLink } from 'apollo-angular/http';
 import { ApplicationConfig, inject } from '@angular/core';
 import {ApolloClientOptions, InMemoryCache, split} from '@apollo/client/core';
 import {getMainDefinition, offsetLimitPagination} from "@apollo/client/utilities";
-
 import {GraphQLWsLink} from "@apollo/client/link/subscriptions";
 import { createClient } from 'graphql-ws';
 import {Kind, OperationTypeNode} from "graphql/language";
 
-const backend_host = process.env["BACKEND_HOST"] || 'ecommbacksvc'
-const backend_port = process.env["BACKEND_PORT"] || '8080'
-
-
-
 export function apolloOptionsFactory(): ApolloClientOptions<any> {
+    const httpLink = inject(HttpLink);
 
-  const httpLink = inject(HttpLink);
 
     const http = httpLink.create({
-        uri: `http://${backend_host}:${backend_port}/graphql`,
+        uri: '/graphql',
     });
+
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsHost = window.location.host;
 
     const ws = new GraphQLWsLink(
         createClient({
-            url: `ws://${backend_host}:${backend_port}/graphql`,
+            url: `${wsProtocol}//${wsHost}/graphql`,
         }),
     );
 
@@ -40,24 +37,24 @@ export function apolloOptionsFactory(): ApolloClientOptions<any> {
         http,
     );
 
-  return {
-    link: link,
-    cache: new InMemoryCache({
-        typePolicies: {
-            Query: {
-                fields: {
-                    customers: offsetLimitPagination(),
+    return {
+        link: link,
+        cache: new InMemoryCache({
+            typePolicies: {
+                Query: {
+                    fields: {
+                        customers: offsetLimitPagination(),
+                    }
                 }
             }
-        }
-    }),
-  };
+        }),
+    };
 }
 
 export const graphqlProvider: ApplicationConfig['providers'] = [
-  Apollo,
-  {
-    provide: APOLLO_OPTIONS,
-    useFactory: apolloOptionsFactory,
-  },
+    Apollo,
+    {
+        provide: APOLLO_OPTIONS,
+        useFactory: apolloOptionsFactory,
+    },
 ];
