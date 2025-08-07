@@ -8,7 +8,7 @@ import {GraphQLWsLink} from "@apollo/client/link/subscriptions";
 import { createClient } from 'graphql-ws';
 import {Kind, OperationTypeNode} from "graphql/language";
 
-const backend_host = process.env["BACKEND_HOST"] || 'localhost'
+const backend_host = process.env["BACKEND_HOST"] || 'ecommbacksvc'
 const backend_port = process.env["BACKEND_PORT"] || '8080'
 
 
